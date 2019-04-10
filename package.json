@@ -1,0 +1,27 @@
+{
+  "name": "5amigos",
+  "version": "1.0.0",
+  "description": "A project webapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shashank56/DBMS_END_SEM-.git"
+  },
+  "author": "Shashank",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shashank56/DBMS_END_SEM-/issues"
+  },
+  "homepage": "https://github.com/Shashank56/DBMS_END_SEM-#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "firebase": "^5.9.3",
+    "mongodb": "^3.2.3",
+    "mysql": "^2.16.0"
+  }
+}

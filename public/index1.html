@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>5 Amigos</title>
+
+    <link rel="stylesheet" href="styles.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>5 Amigos</h1>
+        </div>
+        <div class="row">
+            <div class="col" ><p class="active" id="chef">Chef</p></div>
+            <div class="col" ><p class="active" id="manager">Manager</p></div>
+            <div class="col"><p class="active" id="waiter">Waiter</p></div>
+            <div class="col"><p class="active" id="item">Order</p></div>
+            <div class="col"><p class="active" id="bill">Bill</p></div>
+        </div>
+        <div class="row menu-card">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 menu">
+                <form id="form1" class="active">
+                    Chef :<br>
+                    <input id="chefname" type="text" name="name"><br>
+                    Id no. :<br>
+                    <input id="chefid" type="text" name="id"><br><br>
+                    <button name="data" type="button" id="button1">Submit</button>
+                    <button type="button" id="showtable1">Show Table</button>
+                    <button type="button" id="search1">search</button>
+                    <button type="button" id="update1">Update</button>
+                </form>
+                <form id="form2" class="active">
+                    Manager :<br>
+                    <input id="managername" type="text" name="name"><br>
+                    Id no. :<br>
+                    <input id="managerid" type="text" name="id"><br>
+                    Contact no. :<br>
+                    <input id="managercontact" type="text" name="id"><br><br>
+                    <button name="data" type="button" id="button2">Submit</button>
+                    <button type="button" id="showtable2">Show Table</button>
+                    <button type="button" id="search2">search</button>
+                    <button type="button" id="update2">Update</button>
+                </form>
+                <form id="form3" class="active">
+                    Waiter :<br>
+                    <input id="waitername" type="text" name="name"><br>
+                    Id no. :<br>
+                    <input id="waiterid" type="text" name="Id"><br><br>
+                    <button name="data" type="button" id="button3">Submit</button>
+                    <button type="button" id="showtable3">Show Table</button>
+                    <button type="button" id="search3">search</button>
+                    <button type="button" id="update3">Update</button>
+                </form>
+                <form id="form4" class="active">
+                    Order no. :<br>
+                    <input id="order" type="text" name="name"><br>
+                    Number of items :<br>
+                    <input id="orderitems" type="text" name="name"><br><br>
+                    <button name="data" type="button" id="button4">Submit</button>
+                    <button type="button" id="showtable4">Show Table</button>
+                    <button type="button" id="search4">search</button>
+                    <button type="button" id="update4">Update</button>
+                </form>
+                <form id="form5" class="active">
+                    Token no. :<br>
+                    <input id="bill-no" type="text" name="name"><br>
+                    Price :<br>
+                    <input id="price" type="text" name="name"><br>
+                    Customer :<br>
+                    <input id="customer" type="text" name="name"><br><br>
+                    <button name="data" type="button" id="button5">Submit</button>
+                    <button type="button" id="showtable5">Show Table</button>
+                    <button type="button" id="search5">search</button>
+                    <button type="button" id="update5">Update</button>
+                </form>
+            </div>
+            <div class="col-sm-3"></div>                                                                                                                                      
+        </div>
+    </div>
+    <script>
+        let list=[["chef",1],["manager",0],["waiter",0],["item",0],["bill",0]];
+        document.getElementById("button1").addEventListener('click',function(){
+            fetch('http://localhost:5000/chef',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    chefname : document.getElementById("chefname").value,
+                    id : document.getElementById("chefid").value,
+                }),
+            });
+            document.getElementById("chefname").value = "";
+            document.getElementById('chefid').value = "";
+        })
+        document.getElementById("button2").addEventListener('click',function(){
+            fetch('http://localhost:5000/manager',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    manager : document.getElementById("managername").value,
+                    id : document.getElementById('managerid').value,
+                    contact : document.getElementById('managercontact').value,
+                }),
+            });
+            document.getElementById("managername").value = "";
+            document.getElementById('managerid').value = "";
+            document.getElementById('managercontact').value="";
+        })
+        document.getElementById("button3").addEventListener('click',function(){
+            fetch('http://localhost:5000/waiter',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    waiter : document.getElementById("waitername").value,
+                    id : document.getElementById('waiterid').value,
+                }),
+            });
+            document.getElementById("waitername").value="";
+            document.getElementById('waiterid').value="";
+        })
+        document.getElementById("button4").addEventListener('click',function(){
+            fetch('http://localhost:5000/orders',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    order : document.getElementById("order").value,
+                    items : document.getElementById('orderitems').value,
+                }),
+            });       
+            document.getElementById("order").value="";
+            document.getElementById('orderitems').value="";
+        })
+        document.getElementById("button5").addEventListener('click',function(){
+            fetch('http://localhost:5000/bill',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    bill_no : document.getElementById("bill-no").value,
+                    price : document.getElementById('price').value,
+                    customer : document.getElementById('customer').value,
+                }),
+            });    
+            document.getElementById("bill-no").value="";
+            document.getElementById('price').value="";
+            document.getElementById('customer').value="";
+        })
+
+        document.getElementById("showtable1").addEventListener('click',function(){
+            document.location.href="table.html";
+        })
+
+        document.getElementById("showtable2").addEventListener('click',function(){
+            document.location.href="manager.html";
+        })
+
+        document.getElementById("showtable3").addEventListener('click',function(){
+            document.location.href="waiter.html";
+        })
+
+        document.getElementById("showtable4").addEventListener('click',function(){
+            document.location.href="order.html";
+        })
+
+        document.getElementById("showtable5").addEventListener('click',function(){
+            document.location.href="bill.html";
+        })
+
+        document.getElementById("search1").addEventListener('click',function(){
+            fetch('http://localhost:5000/search1',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    id : document.getElementById("chefid").value,
+                }),
+            });
+            document.getElementById("chefname").value = "";
+            document.getElementById('chefid').value = "";
+            window.setTimeout(()=>{
+                document.location.href="chefs.html";
+            }, 100);
+        })
+
+        document.getElementById("search2").addEventListener('click',function(){
+            fetch('http://localhost:5000/search2',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    id : document.getElementById('managerid').value,
+                }),
+            });
+            document.getElementById("managername").value = "";
+            document.getElementById('managerid').value = "";
+            document.getElementById('managercontact').value="";
+            window.setTimeout(()=>{
+                document.location.href="managers.html";
+            }, 100);
+        })
+        document.getElementById("search3").addEventListener('click',function(){
+            fetch('http://localhost:5000/search3',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    id : document.getElementById('waiterid').value,
+                }),
+            });
+            document.getElementById("waitername").value="";
+            document.getElementById('waiterid').value="";
+            window.setTimeout(()=>{
+                document.location.href="waiters.html";
+            }, 100);
+        })
+        document.getElementById("search4").addEventListener('click',function(){
+            fetch('http://localhost:5000/search4',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    order : document.getElementById("order").value,
+                }),
+            });       
+            document.getElementById("order").value="";
+            document.getElementById('orderitems').value="";
+            window.setTimeout(()=>{
+                document.location.href="orders.html";
+            }, 100);
+        })
+        document.getElementById("search5").addEventListener('click',function(){
+            fetch('http://localhost:5000/search5',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    bill_no : document.getElementById("bill-no").value,
+                }),
+            });    
+            document.getElementById("bill-no").value="";
+            document.getElementById('price').value="";
+            document.getElementById('customer').value="";
+            window.setTimeout(()=>{
+                document.location.href="bills.html";
+            }, 100);
+        })
+        document.getElementById("update1").addEventListener('click',function(){
+            fetch('http://localhost:5000/update1',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    chefname : document.getElementById("chefname").value,
+                    id : document.getElementById("chefid").value,
+                }),
+            });
+            document.getElementById("chefname").value = "";
+            document.getElementById('chefid').value = "";
+        })
+        document.getElementById("update2").addEventListener('click',function(){
+            fetch('http://localhost:5000/update2',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    manager : document.getElementById("managername").value,
+                    id : document.getElementById('managerid').value,
+                    contact : document.getElementById('managercontact').value,
+                }),
+            });
+            document.getElementById("managername").value = "";
+            document.getElementById('managerid').value = "";
+            document.getElementById('managercontact').value="";
+        })
+        document.getElementById("update3").addEventListener('click',function(){
+            fetch('http://localhost:5000/update3',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    waiter : document.getElementById("waitername").value,
+                    id : document.getElementById('waiterid').value,
+                }),
+            });
+            document.getElementById("waitername").value="";
+            document.getElementById('waiterid').value="";
+        })
+        document.getElementById("update4").addEventListener('click',function(){
+            fetch('http://localhost:5000/update4',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    order : document.getElementById("order").value,
+                    items : document.getElementById('orderitems').value,
+                }),
+            });       
+            document.getElementById("order").value="";
+            document.getElementById('orderitems').value="";
+        })
+        document.getElementById("update5").addEventListener('click',function(){
+            fetch('http://localhost:5000/update5',{    
+                method:'POST',
+                headers : {'Content-Type':'application/json'},
+                body : JSON.stringify({
+                    bill_no : document.getElementById("bill-no").value,
+                    price : document.getElementById('price').value,
+                    customer : document.getElementById('customer').value,
+                }),
+            });    
+            document.getElementById("bill-no").value="";
+            document.getElementById('price').value="";
+            document.getElementById('customer').value="";
+        })
+    </script>
+    <script src="click.js"></script>
+    <!-- <script src="main.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+@font-face{
+    font-family: title;
+    src: url(./James\ Fajardo.ttf);
+}
+
+html{
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+    background-image : url('./images/banner-bg.jpg');
+    background-size : 100% 100%;
+    background-repeat : no-repeat;
+}
+
+.container{
+    min-height:70vh!important;
+}
+
+.container .row h1{
+    font-family:title;
+    font-size:15vh;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    color:white;
+}
+
+.container .row h3{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    color:yellowgreen;
+}
+
+.col p{
+    font-family:title;
+    font-size:7vh;
+    text-align: center;
+    color:white;
+}
+
+.container .row form{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    color:white;
+    display:block;
+}
+
+.menu-card{
+    margin-top:5vh;
+    min-height:30vh;
+}
+
+.menu{
+    min-height:100%;
+    background: radial-gradient(ellipse at center,  rgb(99, 204, 104) 0%,rgb(0, 129, 22) 100%);
+    border-radius:1vh;
+}
+
+form{
+    padding:2vh;
+    display:block;
+    text-align:center;
+}
+
+#form1.active,#form2.active,#form3.active,#form4.active,#form5.active{
+    display:none;
+}
+
+.col p{
+    border:2px solid white;
+    background:rgba(0,0,0,0.5);
+}
+
+.col p.active{
+    border:none;
+    background:rgba(0,0,0,0);
+}
+
+.table-row{
+    margin-top:10vh;
+    height:75vh;
+}
+
+.table{
+    min-height:100%;
+    background: radial-gradient(ellipse at center,  rgb(99, 204, 104) 0%,rgb(0, 129, 22) 100%);
+    border-radius:1vh;
+}
+
+#table{
+    margin-top:5vh;
+}
+
+#table,th,td{
+    border: 3px solid yellow;
+}

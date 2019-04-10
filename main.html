@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5-Amigos</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+</head>
+<body>
+    <div class="home-page">
+        <div class="header">
+            <h1>5 Amigos</h1>
+            <form class="login-form" >
+                <input type="text" placeholder="Email" id= "email" name="uLogin"/>
+                <input type="password" placeholder="Password" id="password" name="pLogin"/>
+                <button type="button" id="login" >login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        var config = {
+        apiKey: "AIzaSyA56zVtnB1b-TlgE2-ZF__3Fsgho8OHjJQ",
+        authDomain: "amigos-13445.firebaseapp.com",
+        databaseURL: "https://amigos-13445.firebaseio.com",
+        projectId: "amigos-13445",
+        storageBucket: "amigos-13445.appspot.com",
+        messagingSenderId: "80457216505"
+    };
+
+    firebase.initializeApp(config);
+
+    document.getElementById('login').addEventListener('click',()=>{
+        firebase.auth().signInWithEmailAndPassword(document.getElementById("email").value,document.getElementById('password').value).then(()=>{
+            document.location.href="index1.html";
+        }).catch((error)=>{
+            if(error!=null)
+            {
+                console.log(error.message);
+                return;
+            }
+        })
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row table-row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 table">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <table id="table">
+                        </table>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <script>
+        fetch("http://localhost:5000/table4").then((result)=>{
+            return result.json();
+        }).then(data=>{
+            var result = data;
+            let table = document.getElementById("table");
+            for(let i=0;i<result.length;i++)
+            {
+                let row = table.insertRow(i);
+                let count=0;
+                for( var j in result[i])
+                {
+                    row.insertCell(count).innerHTML = result[i][j];
+                    count++;
+                }  
+            }  
+            let header = table.createTHead();
+            var row1 = header.insertRow(0);
+            for(let i=0;i<Object.keys(result[0]).length;i++)
+            {
+                row1.insertCell(i).innerHTML = Object.keys(result[0])[i];
+            }                    
+        })
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
